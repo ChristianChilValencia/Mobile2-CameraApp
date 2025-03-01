@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Camera App: Photo Gallery</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
+        <ion-img [src]="photo.webviewPath" (click)="showActionSheet(photo, position)"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="transform: scale(2); bottom: -10px;">
+    <ion-fab-button (click)="addPhotoToGallery()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+
+<ion-footer>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="camera" [routerLink]="['/camera']">
+      <ion-icon name="camera"></ion-icon>
+      <ion-label>Camera</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="pictures" [routerLink]="['/album']">
+      <ion-icon name="images-outline"></ion-icon>
+      <ion-label>Album</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>

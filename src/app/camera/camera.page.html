@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Camera App: Capture & Display</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    @if(imageSrc){
+        <img [src]="imageSrc" alt="Captured Image" />
+    }
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-grid slot="top" style="background: #1E1E1E;">
+    <ion-row>
+      <ion-col>
+        <ion-button expand="full" (click)="takePicture()" fill="clear">
+          <ion-icon slot="start" name="camera-outline"></ion-icon>
+          Take Picture
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="full" (click)="pickFromGallery()" fill="clear" color="warning">
+          <ion-icon slot="start" name="images-outline"></ion-icon>
+          Choose Image
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="camera" [routerLink]="['/camera']">
+      <ion-icon name="camera"></ion-icon>
+      <ion-label>Camera</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="pictures" [routerLink]="['/album']">
+      <ion-icon name="images-outline"></ion-icon>
+      <ion-label>Album</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-footer>
