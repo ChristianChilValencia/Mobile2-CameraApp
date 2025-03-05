@@ -4,17 +4,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen="true">
   <ion-grid>
     <ion-row>
-      <ion-col size="6" *ngFor="let photo of photoService.photos; index as position">
-        <ion-img [src]="photo.webviewPath" (click)="showActionSheet(photo, position)"></ion-img>
+      <ion-col size="4" *ngFor="let photo of picturesService.photos; index as position">
+        <ion-img [src]="photo.webviewPath" (click)="presentActionSheet(photo, position)"></ion-img>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed" style="transform: scale(2); bottom: -10px;">
-    <ion-fab-button (click)="addPhotoToGallery()">
+    <ion-fab-button (click)="addPhoto()">
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -4,11 +4,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div>
-    @if(imageSrc){
-        <img [src]="imageSrc" alt="Captured Image" />
-    }
+<ion-content fullscreen="true">
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+    <img *ngIf="imageSrc" [src]="imageSrc" alt="Captured Image" />
   </div>
 </ion-content>
 
@@ -16,13 +14,13 @@
   <ion-grid slot="top" style="background: #1E1E1E;">
     <ion-row>
       <ion-col>
-        <ion-button expand="full" (click)="takePicture()" fill="clear">
+        <ion-button expand="full" (click)="captureImage()" fill="clear">
           <ion-icon slot="start" name="camera-outline"></ion-icon>
           Take Picture
         </ion-button>
       </ion-col>
       <ion-col>
-        <ion-button expand="full" (click)="pickFromGallery()" fill="clear" color="warning">
+        <ion-button expand="full" (click)="selectFromGallery()" fill="clear" color="warning">
           <ion-icon slot="start" name="images-outline"></ion-icon>
           Choose Image
         </ion-button>

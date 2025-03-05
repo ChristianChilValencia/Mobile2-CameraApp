@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { PhotoService, UserPhoto } from '../services/photo.service';
+import { PicturesService, UserPhoto } from '../services/pictures.service';
 import { ActionSheetController } from '@ionic/angular';
 
 @Component({
@@ -14,20 +14,20 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class AlbumPage {
 
-  constructor(public photoService: PhotoService, public actionSheetController: ActionSheetController) {}
+  constructor(public picturesService: PicturesService, public actionSheetController: ActionSheetController) {}
 
   async ngOnInit() {
     console.log('ngOnInit called');
-    await this.photoService.loadSaved();
-    console.log('Photos loaded', this.photoService.photos);
+    await this.picturesService.loadPhotos();
+    console.log('Photos loaded', this.picturesService.photos);
   }
 
-  addPhotoToGallery() {
+  addPhoto() {
     console.log('Adding photo to gallery');
-    this.photoService.addNewToGallery();
+    this.picturesService.capturePhoto();
   }
 
-  public async showActionSheet(photo: UserPhoto, position: number) {
+  public async presentActionSheet(photo: UserPhoto, index: number) {
     console.log('Showing action sheet for photo', photo);
     const actionSheet = await this.actionSheetController.create({
       header: 'Photos',
@@ -37,7 +37,7 @@ export class AlbumPage {
         icon: 'trash',
         handler: () => {
           console.log('Deleting photo', photo);
-          this.photoService.deletePicture(photo, position);
+          this.picturesService.removePhoto(photo, index);
         }
       }, {
         text: 'Cancel',
